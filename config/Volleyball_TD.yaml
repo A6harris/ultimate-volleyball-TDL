@@ -1,0 +1,37 @@
+behaviors:
+  Volleyball:
+    trainer_type: td
+    hyperparameters:
+      # Standard TD Learning parameters
+      batch_size: 128
+      buffer_size: 20480
+      learning_rate: 0.0002
+      learning_rate_schedule: constant
+      beta: 0.001            # Entropy coefficient 
+      epsilon: 1.0           # Starting exploration rate
+      epsilon_decay: 0.995   # Decay rate for exploration
+      epsilon_min: 0.1       # Minimum exploration rate
+      gamma: 0.96            # Discount factor
+      steps_per_update: 4    # Steps between network updates
+      target_update_interval: 1000  # Steps between target network updates
+      num_epoch: 3           # Number of passes through the experience buffer
+      grad_clip: 0.5         # Gradient clipping threshold
+
+    # Network architecture settings
+    network_settings:
+      normalize: true
+      hidden_units: 256
+      num_layers: 2
+      vis_encode_type: simple
+
+    # Reward signal settings
+    reward_signals:
+      extrinsic:
+        gamma: 0.96
+        strength: 1.0
+
+    # Checkpointing
+    keep_checkpoints: 5
+    max_steps: 20000000
+    time_horizon: 1000
+    summary_freq: 20000

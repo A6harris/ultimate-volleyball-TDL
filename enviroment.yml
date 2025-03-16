@@ -1,0 +1,21 @@
+name: volleyball-td
+channels:
+  - pytorch
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.7
+  - pip=20.0
+  - numpy=1.18.5
+  - matplotlib=3.2.2
+  - pytorch=1.7.1
+  - cudatoolkit=10.2
+  - pip:
+    - mlagents==0.27.0
+    - mlagents-envs==0.27.0
+    - protobuf==3.20.0
+    - onnx==1.10.2
+    - pyyaml==6.0
+    - tensorboard==2.6.0
+    - tqdm==4.64.0
+    - h5py==3.1.0

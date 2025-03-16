@@ -1,0 +1,40 @@
+behaviors:
+  Volleyball:
+    trainer_type: td
+    hyperparameters:
+      # Optimized for quicker training
+      batch_size: 256         # Increased from 128 for faster learning
+      buffer_size: 10000      # Reduced from 20480 to save memory
+      learning_rate: 0.001    # Increased from 0.0002 for faster convergence
+      learning_rate_schedule: constant
+      beta: 0.001            # Entropy coefficient 
+      epsilon_start: 0.5      # Start with less exploration (was 1.0)
+      epsilon_decay: 0.95     # Faster decay (was 0.995)
+      epsilon_min: 0.05       # Lower minimum (was 0.1)
+      gamma: 0.96            # Discount factor
+      update_every: 2         # More frequent updates (was 4)
+      tau: 0.1                # Faster target network updates (was 0.001)
+      steps_per_update: 2     # More frequent updates (was 4)
+      target_update_interval: 200  # More frequent updates (was 1000)
+      num_epoch: 3            # Number of passes through the experience buffer
+      grad_clip: 0.5          # Gradient clipping threshold
+
+    # Network architecture settings
+    network_settings:
+      normalize: true
+      hidden_size: 128        # Smaller network (was 256)
+      hidden_units: 128       # Smaller network (was 256)
+      num_layers: 1           # Fewer layers (was 2)
+      vis_encode_type: simple
+
+    # Reward signal settings
+    reward_signals:
+      extrinsic:
+        gamma: 0.96
+        strength: 1.0
+
+    # Checkpointing - Reduced number of steps
+    keep_checkpoints: 3
+    max_steps: 100000        # Much fewer steps (was 20000000)
+    time_horizon: 500        # Shorter episodes (was 1000)
+    summary_freq: 1000       # More frequent summaries (was 20000)
